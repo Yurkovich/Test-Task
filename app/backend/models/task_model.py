@@ -1,10 +1,28 @@
+
 from pydantic import BaseModel
 from datetime import datetime
 
-class Todo(BaseModel):
+
+class Task(BaseModel):
     title: str
     description: str
     category: str
     deadline: datetime
     completed: bool = False
     date_completed: datetime = None
+
+
+class TodoCreate(BaseModel):
+    title: str
+    description: str
+    category: str
+    deadline: datetime
+
+
+class TodoUpdate(BaseModel):
+    title: str
+    description: str
+    category: str
+    completed: bool
+    date_completed: datetime = None
+    deadline: datetime

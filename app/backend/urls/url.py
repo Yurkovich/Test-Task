@@ -1,0 +1,18 @@
+
+from fastapi import APIRouter, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
+
+templates = Jinja2Templates(directory="app/frontend/templates")
+url_router = APIRouter()
+
+
+@url_router.get("/", response_class=HTMLResponse)
+async def read_index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+@url_router.get("/tasks", response_class=HTMLResponse)
+async def read_tasks(request: Request):
+    return templates.TemplateResponse("tasks.html", {"request": request})
