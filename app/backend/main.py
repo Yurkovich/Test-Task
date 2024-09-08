@@ -1,5 +1,4 @@
 
-import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -7,10 +6,10 @@ import uvicorn
 
 from urls.url import url_router
 from routers.task_router import task_router
+from config.config import db_path
 
 
 templates = Jinja2Templates(directory="app/frontend/templates")
-db_path = os.path.join("app", "backend", "database.db")
 app = FastAPI()
 
 

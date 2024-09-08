@@ -8,18 +8,6 @@ from models.task_model import TodoCreate, TodoUpdate
 task_router = APIRouter(tags=['Tasks'])
 
 
-@task_router.post("/api/tasks", response_model=dict)
-async def create_task(todo: TodoCreate):
-    new_todo = Todo(
-        title=todo.title,
-        description=todo.description,
-        category=todo.category,
-        deadline=todo.deadline
-    )
-    await new_todo.create()
-    return {"id": new_todo.id}
-
-
 @task_router.get("/api/tasks", response_model=list)
 async def get_tasks():
     todos = await Todo.get_all()
@@ -32,6 +20,18 @@ async def get_task(todo_id: int):
     if not todo:
         raise HTTPException(status_code=404, detail="Задача не найдена!")
     return todo.__dict__
+
+
+@task_router.post("/api/tasks", response_model=dict)
+async def create_task(todo: TodoCreate):
+    new_todo = Todo(
+        title=todo.title,
+        description=todo.description,
+        category=todo.category,
+        deadline=todo.deadline
+    )
+    await new_todo.create()
+    return {"id": new_todo.id}
 
 
 @task_router.put("/api/tasks/{todo_id}", response_model=dict)

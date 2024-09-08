@@ -1,7 +1,7 @@
 
 from datetime import datetime
 import aiosqlite
-from main import db_path
+from config.config import db_path
 
 
 class Todo:
