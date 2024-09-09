@@ -7,27 +7,28 @@ class Task(BaseModel):
     title: str
     description: str
     category: str
+    priority: int
+    author: str
     deadline: datetime
     completed: bool = False
     date_completed: datetime = None
-    priority: int
-    author: str
-
+    
 
 class TodoCreate(BaseModel):
     title: str
     description: str
     category: str
-    deadline: datetime
     priority: int
     author: str
+    deadline: datetime
 
 
 class TodoUpdate(BaseModel):
     title: str
     description: str
     category: str
+    priority: int
+    author: str
+    deadline: datetime
     completed: bool
     date_completed: datetime = None
-    deadline: datetime
-    priority: int

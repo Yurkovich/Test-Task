@@ -64,7 +64,7 @@ async def mark_task_completed(task_id: int):
         raise HTTPException(status_code=400, detail="Задача уже завершена")
 
     task.completed = True
-    task.date_completed = datetime.now()
+    task.date_completed = datetime.now().strftime("%d.%m.%y %H:%M")
     await task.update()
     
     return task

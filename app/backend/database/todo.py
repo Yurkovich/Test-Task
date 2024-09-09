@@ -24,10 +24,11 @@ class Todo:
 
     async def create(self):
         async with aiosqlite.connect(self.get_db_path()) as conn:
+            formated_deadline = self.deadline.strftime("%d.%m.%y %H:%M")
             async with conn.cursor() as cursor:
                 await cursor.execute(
                     "INSERT INTO tasks (title, description, category, priority, author, deadline) VALUES (?, ?, ?, ?, ?, ?)",
-                    (self.title, self.description, self.category, self.priority, self.author, self.deadline)
+                    (self.title, self.description, self.category, self.priority, self.author, formated_deadline)
                 )
                 await conn.commit()
                 self.id = cursor.lastrowid
@@ -76,17 +77,6 @@ class Todo:
 
     @staticmethod
     def from_db_row(row):
-        def parse_datetime(dt_str: str) -> datetime:
-            try:
-                # Если строка соответствует формату "дд.мм.гггг чч:мм"
-                return datetime.strptime(dt_str, '%d.%m.%Y %H:%M')
-            except ValueError:
-                # Обработка других возможных форматов, например, если вдруг дата в ISO формате
-                return datetime.fromisoformat(dt_str.replace('Z', '+07:00'))
-
-        def format_datetime(dt: datetime) -> str:
-            return dt.strftime('%d.%m.%Y %H:%M') if dt else None
-
         return Todo(
             id=row[0],
             title=row[1],
@@ -95,6 +85,6 @@ class Todo:
             priority=row[4],
             author=row[5],
             completed=row[6],
-            date_completed=format_datetime(parse_datetime(row[7])) if row[7] else None,
-            deadline=format_datetime(parse_datetime(row[8])) if row[8] else None
+            date_completed=row[7],
+            deadline=row[8],
         )
