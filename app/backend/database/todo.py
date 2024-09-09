@@ -94,7 +94,7 @@ class Todo:
                 return datetime.strptime(dt_str, '%d.%m.%Y %H:%M')
             except ValueError:
                 # Обработка других возможных форматов, например, если вдруг дата в ISO формате
-                return datetime.fromisoformat(dt_str.replace('Z', '+00:00'))
+                return datetime.fromisoformat(dt_str.replace('Z', '+07:00'))
 
         def format_datetime(dt: datetime) -> str:
             return dt.strftime('%d.%m.%Y %H:%M') if dt else None
