@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from database.todo import Todo
@@ -50,6 +51,23 @@ async def update_task(todo_id: int, todo: TodoUpdate):
     existing_todo.deadline = todo.deadline
     await existing_todo.update()
     return existing_todo.__dict__
+
+
+@task_router.patch("/api/tasks/{task_id}/complete")
+async def mark_task_completed(task_id: int):
+    task = await Todo.get_by_id(task_id)
+    
+    if not task:
+        raise HTTPException(status_code=404, detail="Задача не найдена")
+    
+    if task.completed:
+        raise HTTPException(status_code=400, detail="Задача уже завершена")
+
+    task.completed = True
+    task.date_completed = datetime.now()
+    await task.update()
+    
+    return task
 
 
 @task_router.delete("/api/tasks/{todo_id}", response_class=JSONResponse)

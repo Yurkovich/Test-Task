@@ -89,7 +89,12 @@ class Todo:
     @staticmethod
     def from_db_row(row):
         def parse_datetime(dt_str: str) -> datetime:
-            return datetime.fromisoformat(dt_str.replace('Z', '+00:00'))
+            try:
+                # Если строка соответствует формату "дд.мм.гггг чч:мм"
+                return datetime.strptime(dt_str, '%d.%m.%Y %H:%M')
+            except ValueError:
+                # Обработка других возможных форматов, например, если вдруг дата в ISO формате
+                return datetime.fromisoformat(dt_str.replace('Z', '+00:00'))
 
         def format_datetime(dt: datetime) -> str:
             return dt.strftime('%d.%m.%Y %H:%M') if dt else None
