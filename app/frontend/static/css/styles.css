@@ -1,7 +1,13 @@
+/* 684627 */
+/* DAA38F */
+/* DFC49B */
+/* 9B7D61 */
+/* FED8A6 */
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #333333;
+    background-color: #fed8a6;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -29,12 +35,140 @@ a:active {
 .nav-item a {
     padding: 0 24px;
     border-radius: 5px;
-    color: #ffffff;
+    color: #684727;
     box-shadow: inset 0 100% 0 0 #54b3d6;
     transition: color 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .nav-item a:hover {
+    color: #dfc49b;
+    box-shadow: inset 200px 0 0 0 #9b7d61;
+}
+
+/* Общие стили для контейнера */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Стили для заголовков */
+h2 {
+    margin-top: 0;
+    color: #dfc49b;
+}
+
+/* Стили для формы добавления задачи */
+.task-form {
+    background-color: #dfc49b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    color: #684627;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-meta {
+    display: flex;
+    gap: 15px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    color: #684627;
+}
+
+.form-group {
+    flex: 1;
+    color: #684627;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+select,
+textarea {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #684727;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button {
+    background-color: #54b3d6;
     color: #fff;
-    box-shadow: inset 200px 0 0 0 #54b3d6;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #7c644c;
+}
+
+/* Стили для списка задач */
+.task-list {
+    background-color: #886848;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #684727;
+    text-align: left;
+    /* color: #dfc49b; */
+}
+
+/* Заголовки */
+th {
+    background-color: #5e4124;
+    color: #fed8a6;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #fed8a6;
+    color: #000000;
+}
+
+tr:nth-child(odd) {
+    color: #dfc49b;
+}
+
+button {
+    background-color: #9b7d61;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #8a6f56;
 }

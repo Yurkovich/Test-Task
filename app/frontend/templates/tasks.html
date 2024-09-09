@@ -1,12 +1,67 @@
+{% extends "base.html" %} {% block title %}Yurkovich's TODO{% endblock %} {%
+block content %}
 
-{% extends "base.html" %}
+<div class="container">
+    <section class="task-form">
+        <h2>Добавить новую задачу</h2>
+        <form id="task-form">
+            <label for="title">Название:</label>
+            <input type="text" id="title" name="title" required />
 
-{% block title %}Yurkovich's TODO{% endblock %}
+            <label for="description">Описание:</label>
+            <textarea id="description" name="description" required></textarea>
 
-{% block content %}
- 
+            <div class="task-meta">
+                <div class="form-group">
+                    <label for="category">Категория:</label>
+                    <input type="text" id="category" name="category" required />
+                </div>
+                <div class="form-group">
+                    <label for="priority">Приоритет:</label>
+                    <select id="priority" name="priority" required>
+                        <option value="1">Низкий</option>
+                        <option value="2">Средний</option>
+                        <option value="3">Высокий</option>
+                        <option value="4">Очень высокий</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author">Автор:</label>
+                    <input type="text" id="author" name="author" required />
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Срок выполнения:</label>
+                    <input
+                        type="datetime-local"
+                        id="deadline"
+                        name="deadline"
+                        required
+                    />
+                </div>
+            </div>
+            <button type="submit">Добавить задачу</button>
+        </form>
+    </section>
 
-    <h1>Popa-jopa</h1>
-
+    <section class="task-list">
+        <h2>Список задач</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                    <th>Приоритет</th>
+                    <th>Автор</th>
+                    <th>Срок выполнения</th>
+                    <th>Завершено</th>
+                    <th>Дата завершения</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="task-list-body"></tbody>
+        </table>
+    </section>
+</div>
 
 {% endblock %}

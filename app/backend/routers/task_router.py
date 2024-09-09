@@ -28,7 +28,9 @@ async def create_task(todo: TodoCreate):
         title=todo.title,
         description=todo.description,
         category=todo.category,
-        deadline=todo.deadline
+        deadline=todo.deadline,
+        priority=todo.priority,
+        author=todo.author
     )
     await new_todo.create()
     return {"id": new_todo.id}
@@ -57,11 +59,3 @@ async def delete_task(todo_id: int):
         raise HTTPException(status_code=404, detail="Задача не найдена!")
     await todo.delete()
     return {"detail": "Задача успешно удалена!"}
-
-
-@task_router.get("/tasks/category/{todo_id}", response_model=dict)
-async def get_category(todo_id: int):
-    category = await Todo.get_category_by_id(todo_id)
-    if category is None:
-        raise HTTPException(status_code=404, detail="Task not found or no category found")
-    return {"category": category}

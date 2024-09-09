@@ -10,6 +10,8 @@ class Task(BaseModel):
     deadline: datetime
     completed: bool = False
     date_completed: datetime = None
+    priority: int
+    author: str
 
 
 class TodoCreate(BaseModel):
@@ -17,6 +19,8 @@ class TodoCreate(BaseModel):
     description: str
     category: str
     deadline: datetime
+    priority: int
+    author: str
 
 
 class TodoUpdate(BaseModel):
@@ -26,3 +30,4 @@ class TodoUpdate(BaseModel):
     completed: bool
     date_completed: datetime = None
     deadline: datetime
+    priority: int
