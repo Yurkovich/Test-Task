@@ -18,18 +18,6 @@ class Todo:
 
 
     @staticmethod
-    def format_datetime(dt: datetime) -> str:
-        return dt.strftime('%Y-%m-%d %H:%M:%S')
-
-
-    @staticmethod
-    def parse_datetime(dt_str: str) -> datetime:
-        if isinstance(dt_str, str):
-            return datetime.fromisoformat(dt_str)
-        return None
-
-
-    @staticmethod
     def get_db_path():
         return db_path
 
