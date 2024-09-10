@@ -16,3 +16,8 @@ async def read_index(request: Request):
 @url_router.get("/tasks", response_class=HTMLResponse)
 async def read_tasks(request: Request):
     return templates.TemplateResponse("tasks.html", {"request": request})
+
+
+@url_router.get("/info", response_class=HTMLResponse)
+async def read_info(request: Request):
+    return templates.TemplateResponse("info.html", {"request": request})
